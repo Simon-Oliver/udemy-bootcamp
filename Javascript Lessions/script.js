@@ -8,4 +8,3 @@ if (number === target) {
 } else if (number > target) {
   console.log('To High!!!');
 }
-
