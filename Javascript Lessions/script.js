@@ -9,4 +9,3 @@ if (number === target) {
   console.log('To High!!!');
 }
 
-console.log(target);
