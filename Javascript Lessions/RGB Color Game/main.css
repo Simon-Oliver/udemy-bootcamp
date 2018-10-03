@@ -1,0 +1,24 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background: #232323;
+    color: white;
+}
+
+.container {
+    height: 210px;
+    width: 320px;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(2, 100px);
+    grid-gap: 10px;
+    margin: 0 auto 0 auto;
+}
+
+.square {
+    height: 100px;
+    width: 100px;
+    background: white;
+}
