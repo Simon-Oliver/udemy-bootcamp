@@ -1,22 +1,51 @@
 let colors = generateColor(6);
+let difficulty = 6;
 
 const colorDisplay = document.querySelector('#colorDisplay');
 const header = document.querySelector('h1');
 const message = document.querySelector('#message');
 const squares = document.querySelectorAll('.square');
+const btnEasy = document.querySelector('#easy');
+const btnHard = document.querySelector('#hard');
 const reset = document.querySelector('#reset');
 let pickedColor = pickColor();
+btnHard.classList.add('selected');
+
+btnEasy.addEventListener('click', () => {
+  btnEasy.classList.add('selected');
+  btnHard.classList.remove('selected');
+  difficulty = 3;
+  resetAll(difficulty);
+});
+btnHard.addEventListener('click', () => {
+  btnEasy.classList.remove('selected');
+  btnHard.classList.add('selected');
+  difficulty = 6;
+  resetAll(difficulty);
+});
+
+message.textContent = 'New Game';
 
 reset.addEventListener('click', () => {
-  colors = generateColor(6);
+  resetAll(difficulty);
+});
+
+function resetAll(num) {
+  colors = generateColor(num);
   pickedColor = pickColor();
   colorDisplay.textContent = pickedColor;
   squares.forEach((e, i) => {
+    if (!colors[i]) {
+      e.style.display = 'none';
+    } else {
+      e.style.display = 'block';
+    }
     e.style.backgroundColor = colors[i];
   });
   header.style.backgroundColor = '#23232323';
   reset.textContent = 'New Color!';
-});
+  message.textContent = 'New Game';
+}
 
 // Function will change all squares to the winning color
 function changeColor(color) {

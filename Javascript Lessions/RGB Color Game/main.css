@@ -10,10 +10,6 @@ body {
   margin: 0px;
 }
 
-h1 {
-  color: white;
-}
-
 .container {
   height: 210px;
   width: 320px;
@@ -27,7 +23,8 @@ h1 {
 .square {
   height: 100px;
   width: 100px;
-  background: white;
+  background: #232323;
+  border-radius: 10px;
 }
 
 #stripe {
@@ -41,6 +38,10 @@ h1 {
 #stripe span {
   display: inline-flex;
   align-items: center;
+}
+
+#message {
+  font-weight: 500;
 }
 
 .outer {
@@ -58,7 +59,16 @@ h1 {
 }
 
 h1 {
+  color: white;
   text-align: center;
   margin: 0px;
   padding: 20px;
+}
+
+.btn-diff {
+  height: 100%;
+}
+
+.selected {
+  background: blue;
 }
