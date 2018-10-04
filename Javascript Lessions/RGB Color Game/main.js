@@ -1,10 +1,20 @@
-const colors = generateColor(6);
+let colors = generateColor(6);
 
 const colorDisplay = document.querySelector('#colorDisplay');
 const header = document.querySelector('h1');
 const message = document.querySelector('#message');
 const squares = document.querySelectorAll('.square');
-const pickedColor = pickColor();
+const reset = document.querySelector('#reset');
+let pickedColor = pickColor();
+
+reset.addEventListener('click', () => {
+  colors = generateColor(6);
+  pickedColor = pickColor();
+  colorDisplay.textContent = pickedColor;
+  squares.forEach((e, i) => {
+    e.style.backgroundColor = colors[i];
+  });
+});
 
 // Function will change all squares to the winning color
 function changeColor(color) {
