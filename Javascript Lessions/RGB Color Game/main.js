@@ -14,6 +14,8 @@ reset.addEventListener('click', () => {
   squares.forEach((e, i) => {
     e.style.backgroundColor = colors[i];
   });
+  header.style.backgroundColor = '#23232323';
+  reset.textContent = 'New Color!';
 });
 
 // Function will change all squares to the winning color
@@ -57,8 +59,9 @@ squares.forEach((e, i) => {
     const selected = e.style.backgroundColor;
     // check if selected color matches winning color
     if (selected === pickedColor) {
-      message.textContent = 'Correct!!!';
+      message.textContent = 'Correct!';
       changeColor(e.style.backgroundColor);
+      reset.textContent = 'Play Again?';
       // if colors don't match square will "disappear"
     } else {
       e.style.backgroundColor = '#23232323';

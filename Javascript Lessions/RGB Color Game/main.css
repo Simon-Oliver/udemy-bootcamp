@@ -1,43 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,900');
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background: #232323;
-    padding: 0px;
-    margin: 0px;
+  background: #232323;
+  padding: 0px;
+  margin: 0px;
 }
 
 h1 {
-    color: white;
+  color: white;
 }
 
 .container {
-    height: 210px;
-    width: 320px;
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(2, 100px);
-    grid-gap: 10px;
-    margin: 0 auto 0 auto;
+  height: 210px;
+  width: 320px;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(2, 100px);
+  grid-gap: 10px;
+  margin: 0 auto 0 auto;
 }
 
 .square {
-    height: 100px;
-    width: 100px;
-    background: white;
+  height: 100px;
+  width: 100px;
+  background: white;
 }
 
 #stripe {
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    background-color: white;
-    padding: 5px;
-    margin-bottom: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  margin-bottom: 10px;
 }
 
 #stripe span {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
+}
+
+.outer {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  width: 320px;
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 0px;
+  padding: 20px;
 }
