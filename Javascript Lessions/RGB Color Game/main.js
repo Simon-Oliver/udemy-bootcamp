@@ -1,36 +1,60 @@
-let colors = generateColor(6);
-let difficulty = 6;
+let colors = [];
+let difficulty;
+let pickedColor;
 
 const colorDisplay = document.querySelector('#colorDisplay');
 const header = document.querySelector('h1');
 const message = document.querySelector('#message');
 const squares = document.querySelectorAll('.square');
-const btnEasy = document.querySelector('#easy');
-const btnHard = document.querySelector('#hard');
+const modeBtn = document.querySelectorAll('.mode');
 const reset = document.querySelector('#reset');
-let pickedColor = pickColor();
-btnHard.classList.add('selected');
 
-btnEasy.addEventListener('click', () => {
-  btnEasy.classList.add('selected');
-  btnHard.classList.remove('selected');
-  difficulty = 3;
-  resetAll(difficulty);
-});
-btnHard.addEventListener('click', () => {
-  btnEasy.classList.remove('selected');
-  btnHard.classList.add('selected');
-  difficulty = 6;
-  resetAll(difficulty);
-});
+init();
 
-message.textContent = 'New Game';
+function init() {
+  modeBtn.forEach(e => {
+    e.addEventListener('click', () => {
+      modeBtn[0].classList.remove('selected');
+      modeBtn[1].classList.remove('selected');
+      e.classList.add('selected');
+      if (e.textContent === 'Easy') {
+        difficulty = 3;
+        resetAll(difficulty);
+      } else {
+        difficulty = 6;
+        resetAll(difficulty);
+      }
+    });
+  });
 
-reset.addEventListener('click', () => {
-  resetAll(difficulty);
-});
+  squares.forEach((e, i) => {
+    // Add inital colors
+    e.style.backgroundColor = colors[i];
+    // Add eventListener for each square
+    e.addEventListener('click', () => {
+      const selected = e.style.backgroundColor;
+      // check if selected color matches winning color
+      if (selected === pickedColor) {
+        message.textContent = 'Correct!';
+        changeColor(e.style.backgroundColor);
+        reset.textContent = 'Play Again?';
+        // if colors don't match square will "disappear"
+      } else {
+        e.style.backgroundColor = '#23232323';
+        message.textContent = 'Try Again!';
+      }
+    });
+  });
+
+  resetAll(6);
+
+  reset.addEventListener('click', () => {
+    resetAll(difficulty);
+  });
+}
 
 function resetAll(num) {
+  difficulty = num;
   colors = generateColor(num);
   pickedColor = pickColor();
   colorDisplay.textContent = pickedColor;
@@ -45,6 +69,7 @@ function resetAll(num) {
   header.style.backgroundColor = '#23232323';
   reset.textContent = 'New Color!';
   message.textContent = 'New Game';
+  colorDisplay.textContent = pickedColor;
 }
 
 // Function will change all squares to the winning color
@@ -77,24 +102,3 @@ function randomColor() {
   const RGB = `rgb(${r}, ${g}, ${b})`;
   return RGB;
 }
-
-colorDisplay.textContent = pickedColor;
-
-squares.forEach((e, i) => {
-  // Add inital colors
-  e.style.backgroundColor = colors[i];
-  // Add eventListener for each square
-  e.addEventListener('click', () => {
-    const selected = e.style.backgroundColor;
-    // check if selected color matches winning color
-    if (selected === pickedColor) {
-      message.textContent = 'Correct!';
-      changeColor(e.style.backgroundColor);
-      reset.textContent = 'Play Again?';
-      // if colors don't match square will "disappear"
-    } else {
-      e.style.backgroundColor = '#23232323';
-      message.textContent = 'Try Again!';
-    }
-  });
-});
