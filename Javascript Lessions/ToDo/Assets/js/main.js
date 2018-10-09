@@ -1,20 +1,29 @@
 $('li').click(strikeOut);
 $('span').click(deletItem);
-$('button').click(addItem);
+$('input[type="text"]').keypress(e => {
+  if (e.which === 13) {
+    addItem();
+  }
+});
 
 function addItem() {
-  const input = $('input').val();
-  $('ul').append(`
-    <li><span>X</span> ${input}</li>
-    `);
-  $('input').val('');
-  $('span').click(deletItem);
+  if (!$('input').val() == '') {
+    $('ul').append(`
+        <li><span>X</span> ${$('input').val()}</li>
+        `);
+    $('input').val('');
+    $('span').click(deletItem);
+  }
 }
 
-function deletItem() {
+function deletItem(e) {
   $(this)
     .parent()
-    .remove();
+    .fadeOut(500, function() {
+      $(this).remove();
+    });
+
+  e.stopPropagation();
 }
 
 function strikeOut() {
