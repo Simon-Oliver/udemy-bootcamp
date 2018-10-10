@@ -5,11 +5,16 @@ $('input[type="text"]').keypress(e => {
     addItem();
   }
 });
+$('.plusDiv').click(() => {
+  $('input[type="text"]').fadeToggle();
+});
 
 function addItem() {
   if (!$('input').val() == '') {
     $('ul').append(`
-        <li><span>X</span> ${$('input').val()}</li>
+        <li><span><i class="far fa-trash-alt"></i></span> ${$(
+          'input'
+        ).val()}</li>
         `);
     $('input').val('');
     $('span').click(deletItem);
