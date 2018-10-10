@@ -1,5 +1,5 @@
-$('li').click(strikeOut);
-$('span').click(deletItem);
+$('ul').on('click', '.textToDo', strikeOut);
+$('ul').on('click', 'span', deletItem);
 $('input[type="text"]').keypress(e => {
   if (e.which === 13) {
     addItem();
@@ -12,12 +12,11 @@ $('.plusDiv').click(() => {
 function addItem() {
   if (!$('input').val() == '') {
     $('ul').append(`
-        <li><span><i class="far fa-trash-alt"></i></span> ${$(
-          'input'
-        ).val()}</li>
+        <li><span><i class="far fa-trash-alt"></i></span><div class="textToDo">
+        ${$('input').val()}
+        </div></li>
         `);
     $('input').val('');
-    $('span').click(deletItem);
   }
 }
 

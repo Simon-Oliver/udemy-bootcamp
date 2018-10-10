@@ -96,3 +96,7 @@ li:nth-child(2n) {
     color: #44eebb;
     text-decoration: line-through;
 }
+
+.completed span i {
+    text-decoration: none;
+}
