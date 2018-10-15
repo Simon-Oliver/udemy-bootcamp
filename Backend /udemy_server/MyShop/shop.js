@@ -1,4 +1,7 @@
 const faker = require('faker');
 
-const name = faker.commerce.productName();
-console.log(name);
+for (let i = 0; i < 10; i++) {
+  const product = faker.commerce.productName();
+  const price = faker.commerce.price();
+  console.log(`${product} - $${price}`);
+}
