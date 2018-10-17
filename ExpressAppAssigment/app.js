@@ -5,16 +5,14 @@ app.get('/', (req, res) => {
   res.send('Hi there, welcome to my asssigment');
 });
 app.get('/speak/:animal', (req, res) => {
-  let string = `The ${req.params.animal} says`;
-  if (req.params.animal === 'pig') {
-    string += ` Oink`;
-  } else if (req.params.animal === 'cow') {
-    string += ` Moo`;
-  } else if (req.params.animal === 'dog') {
-    string += ` Woof Woof!`;
-  }
+  const animal = req.params.animal.toLowerCase();
+  const sounds = {
+    pig: 'Oink',
+    dog: 'Woof Woof!',
+    bird: 'chirp'
+  };
 
-  res.send(string);
+  res.send(`The ${animal} says ${sounds[animal]}`);
 });
 
 app.get('/repeat/:word/:num', (req, res) => {
