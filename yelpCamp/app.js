@@ -2,10 +2,40 @@ const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
 
+const mongoose = require('mongoose');
+
 const app = express();
 
+mongoose.connect(
+  'mongodb://localhost/yelp_camp',
+  { useNewUrlParser: true }
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+
+// Schema Setup
+const campgroundSchema = new mongoose.Schema({
+  name: String,
+  image: String
+});
+
+const Campground = mongoose.model('Campground', campgroundSchema);
+
+Campground.create(
+  {
+    name: 'zürich',
+    image:
+      'https://images.pexels.com/photos/803226/pexels-photo-803226.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350'
+  },
+  (err, campground) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('New Campground');
+      console.log(campground);
+    }
+  }
+);
 
 app.get('/', (req, res) => {
   res.render('landing');
