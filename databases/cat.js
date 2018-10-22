@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const express = require('express');
+
+const app = express();
 
 mongoose.connect(
   'mongodb://localhost/cat_app',
@@ -12,6 +15,16 @@ const catSchema = new mongoose.Schema({
 });
 
 const Cat = mongoose.model('Cat', catSchema);
+
+app.get('/', (req, res) => {
+  Cat.find({}, (err, cats) => {
+    if (err) {
+      console.log('erro occured');
+    } else {
+      res.render('home.ejs', { cats });
+    }
+  });
+});
 
 Cat.create(
   {
@@ -50,3 +63,5 @@ Cat.find({}, (err, cats) => {
     console.log(cats);
   }
 });
+
+app.listen(3000);
