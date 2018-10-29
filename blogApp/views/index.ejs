@@ -1,11 +1,15 @@
 <% include ./partials/header.ejs %>
 
+<div class='ui main text container segment'>
 <h1>Index Page</h1>
 
 <% blogPosts.forEach(e => { %>
 <img src="<%= e.image %>" alt="">
 <h1> <%= e.title %></h1>
 <p><%= e.body %></p>
+
 <% }) %>
 
-<% include ./partials/footer.ejs %>
+</div>
+
+<% include ./partials/footer.ejs %>ß

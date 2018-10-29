@@ -28,13 +28,27 @@ const Blog = mongoose.model('Blog', blogSchema);
 app.get('/', (req, res) => {
   res.redirect('/blogs');
 });
-
+// INDEX ROUT
 app.get('/blogs', (req, res) => {
   Blog.find({}, (err, blogPosts) => {
     if (err) {
       console.log('something went wrong');
     } else {
       res.render('index', { blogPosts });
+    }
+  });
+});
+// NEW ROUTE
+app.get('/blogs/new', (req, res) => {
+  res.render('new');
+});
+// CREATE ROUTE
+app.post('/blogs', (req, res) => {
+  Blog.create(req.body.blog, (err, newBlog) => {
+    if (err) {
+      res.render('new');
+    } else {
+      res.redirect('/blogs');
     }
   });
 });
