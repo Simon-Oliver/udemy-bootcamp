@@ -1,0 +1,7 @@
+<h1>Index Page</h1>
+
+<% blogPosts.forEach(e => { %>
+<img src="<%= e.image %>" alt="">
+<h1> <%= e.title %></h1>
+<p><%= e.body %></p>
+<% }) %>
