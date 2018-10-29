@@ -1,3 +1,5 @@
+<% include ./partials/header.ejs %>
+
 <h1>Index Page</h1>
 
 <% blogPosts.forEach(e => { %>
@@ -5,3 +7,5 @@
 <h1> <%= e.title %></h1>
 <p><%= e.body %></p>
 <% }) %>
+
+<% include ./partials/footer.ejs %>
