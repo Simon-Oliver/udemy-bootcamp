@@ -53,8 +53,15 @@ app.post('/blogs', (req, res) => {
   });
 });
 
-/* app.get('/blogs', (req, res) => {
-  res.render('index');
-}); */
+// SHOW ROUTE
+app.get('/blogs/:id', (req, res) => {
+  Blog.findById(req.params.id, (err, post) => {
+    if (err) {
+      res.redirect('/blogs');
+    } else {
+      res.render('show', { post });
+    }
+  });
+});
 
 app.listen(3000);
