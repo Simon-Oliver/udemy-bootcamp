@@ -5,9 +5,9 @@
 <% blogPosts.forEach(e => { %>
 <img src="<%= e.image %>" alt="">
 <h1> <%= e.title %></h1>
-<p><%= e.body %></p>
+<p><%- e.body.substring(0, 100) %>...</p>
 <a href="/blogs/<%= e._id%>">Read More</a>
 
 <% }) %>
 
-<% include ./partials/footer.ejs %>ß
+<% include ./partials/footer.ejs %>
