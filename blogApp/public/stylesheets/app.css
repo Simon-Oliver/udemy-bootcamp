@@ -9,3 +9,7 @@ i.icon {
 img {
   width: 100%;
 }
+
+#buttons {
+  display: flex;
+}
