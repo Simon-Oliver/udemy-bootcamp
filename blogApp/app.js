@@ -82,6 +82,7 @@ app.get('/blogs/:id/edit', (req, res) => {
 
 // UPDATE ROUTE
 app.put('/blogs/:id', (req, res) => {
+  req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.findOneAndUpdate(req.params.id, req.body.blog, (err, updatedPost) => {
     if (err) {
       res.redirect('/blogs');

@@ -1,13 +1,26 @@
 <% include ./partials/header.ejs %>
 
-<h1>Index Page</h1>
+<div class="ui main text container">
+    <div class="ui huge header">RESTful Blog App</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            <% blogPosts.forEach(e => { %>
+                <div class="item">
+                    <div class="image">
+                        <img src="<%= e.image %>" alt="">
+                    </div>
+                    <div class="content">
+                    <a href="/"><%= e.title%></a>
+                    </div>
+                    <h1> <%= e.title %></h1>
+                    <p><%- e.body.substring(0, 100) %>...</p>
+                    <a href="/blogs/<%= e._id%>">Read More</a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
 
-<% blogPosts.forEach(e => { %>
-<img src="<%= e.image %>" alt="">
-<h1> <%= e.title %></h1>
-<p><%- e.body.substring(0, 100) %>...</p>
-<a href="/blogs/<%= e._id%>">Read More</a>
 
-<% }) %>
 
 <% include ./partials/footer.ejs %>
