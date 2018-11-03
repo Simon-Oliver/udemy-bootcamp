@@ -5,22 +5,26 @@
     <div class="ui top attached segment">
         <div class="ui divided items">
             <% blogPosts.forEach(e => { %>
-                <div class="item">
-                    <div class="image">
-                        <img src="<%= e.image %>" alt="">
+            <div class="item">
+                <div class="image"><img src="<%= e.image %>" alt=""></div>
+                <div class="content">
+                    <a href="/blogs/<%= e._id%>" class="ui huge header">
+                        <%= e.title %></a>
+                    <div class="meta">
+                        <span>
+                            <%= e.created.toDateString()%></span></div>
+                    <div class="description">
+                        <p>
+                            <%- e.body.substring(0, 100) %>...</p>
                     </div>
-                    <div class="content">
-                    <a href="/"><%= e.title%></a>
+                    <div class="extra">
+                        <a href="/blogs/<%= e._id%>" class="ui basic black button">Read More</a>
                     </div>
-                    <h1> <%= e.title %></h1>
-                    <p><%- e.body.substring(0, 100) %>...</p>
-                    <a href="/blogs/<%= e._id%>">Read More</a>
                 </div>
+            </div>
             <% }) %>
         </div>
     </div>
 </div>
-
-
 
 <% include ./partials/footer.ejs %>

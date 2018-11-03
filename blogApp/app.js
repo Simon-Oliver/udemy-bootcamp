@@ -1,6 +1,6 @@
-const expressSanitizer = require('express-sanitizer');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
+const expressSanitizer = require('express-sanitizer');
 const mongoose = require('mongoose');
 const express = require('express');
 
@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(expressSanitizer);
+app.use(expressSanitizer());
 
 // MONGOOSE/MODEL CONFIG
 const blogSchema = new mongoose.Schema({
