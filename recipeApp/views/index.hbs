@@ -1,0 +1,23 @@
+{{> header}}
+
+<div class="ui main text container">
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            {{#each recipes}}
+            <div class="item">
+                <h3>{{this.title}}</h3>
+                <h4>Ingredients</h4>
+                <ul>
+                    {{#each this.ingredients}}
+                    <li>{{this.amount}} {{this.ingredient}}</li>
+                    {{/each}}
+                </ul>
+                <h4>Method</h4>
+                <p>{{this.body}}</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+{{> footer}}
