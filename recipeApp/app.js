@@ -32,19 +32,25 @@ const blogSchema = new mongoose.Schema({
 
 const Recipe = mongoose.model('Recipe', blogSchema);
 
-Recipe.create({
-  title: 'Greek Salad',
-  ingredients: [
-    { ingredient: 'Cucumber', quantity: 2, measure: 'pieces' },
-    { ingredient: 'Olives', quantity: 500, measure: 'g' },
-    { ingredient: 'Feta', quantity: 200, measure: 'g' },
-    { ingredient: 'Salad', quantity: 1, measure: 'head' }
-  ],
-  body:
-    'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, perferendis pariatur. Magni id cum nihil non expedita esse, dolorum velit! Quas a ex deleniti et, rerum veritatis adipisci, delectus sunt dolor animi eius ipsam pariatur voluptas vero voluptates dolores consectetur perspiciatis eum ullam cumque, libero excepturi qui odio nobis! Perspiciatis.'
+// Recipe.create({
+//   title: 'Greek Salad',
+//   ingredients: [
+//     { ingredient: 'Cucumber', quantity: 2, measure: 'pieces' },
+//     { ingredient: 'Olives', quantity: 500, measure: 'g' },
+//     { ingredient: 'Feta', quantity: 200, measure: 'g' },
+//     { ingredient: 'Salad', quantity: 1, measure: 'head' }
+//   ],
+//   body:
+//     'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, perferendis pariatur. Magni id cum nihil non expedita esse, dolorum velit! Quas a ex deleniti et, rerum veritatis adipisci, delectus sunt dolor animi eius ipsam pariatur voluptas vero voluptates dolores consectetur perspiciatis eum ullam cumque, libero excepturi qui odio nobis! Perspiciatis.'
+// });
+
+// RESTFULL ROUTS
+app.get('/', (req, res) => {
+  res.redirect('/recipes');
 });
 
-app.get('/', (req, res) => {
+// INDEX ROUT
+app.get('/recipes', (req, res) => {
   Recipe.find({}, (err, recipe) => {
     if (err) {
       console.log('Error');
@@ -52,6 +58,17 @@ app.get('/', (req, res) => {
       res.render('index', { recipe });
     }
   });
+});
+
+// NEW ROUTE
+app.get('/recipes/new', (req, res) => {
+  res.render('new');
+});
+
+// CREATE ROUTE
+app.post('/recipes', (req, res) => {
+  // req.body.blog.body = req.sanitize(req.body.blog.body);
+  console.log(req.body.recipe);
 });
 
 app.listen(3000);

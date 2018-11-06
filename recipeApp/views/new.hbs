@@ -1,0 +1,36 @@
+{{> header}}
+<div class='ui main text container segment'>
+    <div class='ui huge header'>New Recipe</div>
+    <form class="ui form" action='/recipes' method='POST'>
+        <div class="field">
+            <label for="">Title</label>
+            <input type="text" name="recipe[title]" placeholder='Title' value="">
+        </div>
+
+        <div class="field">
+            <label for="">Ingredients</label>
+            <div id="ingredients">
+                <div class="three fields">
+                    <div class="field">
+                        <input type="text" name="recipe[ingredient][0][ingredient]" placeholder='Ingredient' value="">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="recipe[ingredient][0][quantity]" placeholder='Quantaty' value="">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="recipe[ingredient][0][measure]" placeholder='Ingredient' value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="addIngredient" class="ui bottom attached button" tabindex="0">Bottom</div>
+
+        <div class="field">
+            <label for="">Body</label>
+            <textarea name="recipe[body]" required></textarea>
+        </div>
+        <input class="ui black basic button" type="submit">
+    </form>
+</div>
+
+{{> footer}}
