@@ -22,5 +22,13 @@ function newIngredient() {
   ingredientCounter++;
 }
 
+function rmIngredient() {
+  const select = document.querySelector('#ingredients');
+  select.removeChild(select.lastChild);
+  ingredientCounter--;
+}
+
 const addIngredient = document.querySelector('#addIngredient');
 addIngredient.addEventListener('click', newIngredient);
+const removeIngredient = document.querySelector('#removeIngredient');
+removeIngredient.addEventListener('click', rmIngredient);
