@@ -7,13 +7,13 @@ function newIngredient() {
   DIV.innerHTML = `
   <div id="ingredients" class="three fields">
   <div class="field">
-      <input type="text" name="recipe[ingredient][${ingredientCounter}][ingredient]" placeholder='Ingredient' value="">
+      <input type="text" name="recipe[ingredients][${ingredientCounter}][ingredient]" placeholder='Ingredient' required value="">
   </div>
   <div class="field">
-      <input type="text" name="recipe[ingredient][${ingredientCounter}][quantity]" placeholder='Quantaty' value="">
+      <input type="text" name="recipe[ingredients][${ingredientCounter}][quantity]" placeholder='Quantity' required value="">
   </div>
   <div class="field">
-      <input type="text" name="recipe[ingredient][${ingredientCounter}][measure]" placeholder='Ingredient' value="">
+      <input type="text" name="recipe[ingredients][${ingredientCounter}][measure]" placeholder='Measure' required value="">
   </div>
 </div>
 `;
@@ -24,7 +24,7 @@ function newIngredient() {
 
 function rmIngredient() {
   const select = document.querySelector('#ingredients');
-  select.removeChild(select.lastChild);
+  select.removeChild(select.lastElementChild);
   ingredientCounter--;
 }
 

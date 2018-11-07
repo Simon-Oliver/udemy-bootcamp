@@ -68,7 +68,13 @@ app.get('/recipes/new', (req, res) => {
 // CREATE ROUTE
 app.post('/recipes', (req, res) => {
   // req.body.blog.body = req.sanitize(req.body.blog.body);
-  console.log(req.body.recipe);
+  Recipe.create(req.body.recipe, (err, newRecipe) => {
+    if (err) {
+      res.render('new');
+    } else {
+      res.redirect('/recipes');
+    }
+  });
 });
 
 app.listen(3000);

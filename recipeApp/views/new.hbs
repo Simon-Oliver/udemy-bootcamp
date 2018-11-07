@@ -4,7 +4,7 @@
     <form class="ui form" action='/recipes' method='POST'>
         <div class="field">
             <label for="">Title</label>
-            <input type="text" name="recipe[title]" placeholder='Title' value="">
+            <input type="text" name="recipe[title]" placeholder='Title' required value="">
         </div>
 
         <div class="field">
@@ -12,13 +12,15 @@
             <div id="ingredients">
                 <div class="three fields">
                     <div class="field">
-                        <input type="text" name="recipe[ingredient][0][ingredient]" placeholder='Ingredient' value="">
+                        <input type="text" name="recipe[ingredients][0][ingredient]" placeholder='Ingredient' required
+                            value="">
                     </div>
                     <div class="field">
-                        <input type="text" name="recipe[ingredient][0][quantity]" placeholder='Quantity' value="">
+                        <input type="text" name="recipe[ingredients][0][quantity]" placeholder='Quantity' required
+                            value="">
                     </div>
                     <div class="field">
-                        <input type="text" name="recipe[ingredient][0][measure]" placeholder='Measure' value="">
+                        <input type="text" name="recipe[ingredients][0][measure]" placeholder='Measure' required value="">
                     </div>
                 </div>
             </div>
