@@ -77,4 +77,42 @@ app.post('/recipes', (req, res) => {
   });
 });
 
+// SHOW ROUTE
+app.get('/recipes/:id', (req, res) => {
+  Recipe.findById(req.params.id, (err, recipe) => {
+    if (err) {
+      res.redirect('/recipes');
+    } else {
+      res.render('show', { recipe });
+    }
+  });
+});
+// EDIT ROUTE
+app.get('/recipes/:id/edit', (req, res) => {
+  Recipe.findById(req.params.id, (err, recipe) => {
+    if (err) {
+      res.redirect('/recipes');
+    } else {
+      res.render('edit', { recipe });
+    }
+  });
+});
+
+// UPDATE ROUTE
+app.put('/recipes/:id', (req, res) => {
+  Recipe.findByIdAndUpdate(
+    req.params.id,
+    req.body.recipe,
+    (err, recipeUpdated) => {
+      if (err) {
+        res.redirect('/recipes');
+      } else {
+        res.redirect(`/recipes/${req.params.id}`);
+      }
+    }
+  );
+});
+
+// DESTROY ROUTE
+
 app.listen(3000);

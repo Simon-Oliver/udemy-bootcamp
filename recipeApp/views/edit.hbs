@@ -1,0 +1,46 @@
+{{> header}}
+<div class='ui main text container segment'>
+    <div class='ui huge header'>New Recipe</div>
+    <form class="ui form" action='/recipes/{{recipe._id}}?_method=PUT' method='POST'>
+        <div class="field">
+            <label for="">Title</label>
+            <input type="text" name="recipe[title]" placeholder='Title' required value="{{recipe.title}}">
+        </div>
+
+        <div id="ingredinetContainer" class="field">
+            <label for="">Ingredients</label>
+            {{#each recipe.ingredients}}
+            <div id="ingredients">
+                <div class="three fields">
+                    <div class="field">
+                        <input type="text" name="recipe[ingredients][{{@index}}][ingredient]" placeholder='Ingredient'
+                            required value="{{this.ingredient}}">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="recipe[ingredients][{{@index}}][quantity]" placeholder='Quantity'
+                            required value="{{this.quantity}}">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="recipe[ingredients][{{@index}}][measure]" placeholder='Measure'
+                            required value="{{this.measure}}">
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <button id="addIngredient" class="ui button">Add</button>
+        <div id="removeIngredient" class="ui red button" tabindex="0">Remove</div>
+
+        <div class="field">
+            <label for="">Body</label>
+            <textarea name="recipe[body]" required>{{recipe.body}}</textarea>
+        </div>
+        <input class="ui black basic button" type="submit">
+    </form>
+</div>
+
+<footer> Created by Simon - Copyright {{getCurrentYear}}</footer>
+<script src="/scripts/edit.js"></script>
+</body>
+
+</html>

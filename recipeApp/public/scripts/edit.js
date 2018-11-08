@@ -1,5 +1,7 @@
 // CLIENTSIDE LOGIC
-let ingredientCounter = 1;
+let ingredientCounter = document.querySelectorAll(
+  '#ingredinetContainer div.three.fields'
+).length;
 
 function newIngredient() {
   const ingredients = document.querySelector('#ingredinetContainer');

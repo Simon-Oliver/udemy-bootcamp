@@ -8,16 +8,12 @@
                 <div class="item">
                     <div class="content">
                         <h3>{{this.title}}</h3>
-                        <h4>Ingredients</h4>
-                        <ul>
-                            {{#each this.ingredients}}
-                            <li>{{this.quantity}} {{this.ingredient}}</li>
-                            {{/each}}
-                        </ul>
-                        <h4>Method</h4>
-                        <p>{{this.body}}</p>
+                        <div class="extra">
+                            <a href="/recipes/{{this._id}}" class="ui basic black button">Read More</a>
+                        </div>
                     </div>
                 </div>
+
                 {{/each}}
             </div>
         </div>
