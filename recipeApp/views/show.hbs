@@ -15,8 +15,11 @@
                         </ul>
                         <h4>Method</h4>
                         <p>{{recipe.body}}</p>
-                        <div class="extra">
+                        <div id="btnContainer" class="extra">
                             <a href="/recipes/{{recipe._id}}/edit" class="ui basic black button">Edit</a>
+                            <form action='/recipes/{{recipe._id}}?_method=DELETE' method="POST">
+                                <button class="ui red basic button">Delete</button>
+                            </form>
                         </div>
                     </div>
 

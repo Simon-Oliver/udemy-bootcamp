@@ -114,5 +114,14 @@ app.put('/recipes/:id', (req, res) => {
 });
 
 // DESTROY ROUTE
+app.delete('/recipes/:id', (req, res) => {
+  Recipe.findByIdAndRemove(req.params.id, err => {
+    if (err) {
+      res.redirect('/recipes');
+    } else {
+      res.redirect('/recipes');
+    }
+  });
+});
 
 app.listen(3000);
