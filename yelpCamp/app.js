@@ -3,24 +3,18 @@ const request = require('request');
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
+const Campground = require('./models/campground');
+const Comment = require('./models/comment');
+const User = require('./models/user');
 
 const app = express();
 
 mongoose.connect(
   'mongodb://localhost/yelp_camp',
-  { useNewUrlParser: true },
+  { useNewUrlParser: true }
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-
-// Schema Setup
-const campgroundSchema = new mongoose.Schema({
-  name: String,
-  image: String,
-  description: String,
-});
-
-const Campground = mongoose.model('Campground', campgroundSchema);
 
 /* Campground.create(
   {
