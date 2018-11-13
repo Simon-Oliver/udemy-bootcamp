@@ -6,7 +6,9 @@ const mongoose = require('mongoose');
 const Campground = require('./models/campground');
 const Comment = require('./models/comment');
 const User = require('./models/user');
+const seedDB = require('./seed.js');
 
+seedDB();
 const app = express();
 
 mongoose.connect(
@@ -15,22 +17,6 @@ mongoose.connect(
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-
-/* Campground.create(
-  {
-    name: 'wetzikon',
-    image:
-      'https://images.pexels.com/photos/176381/pexels-photo-176381.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-  },
-  (err, campground) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('New Campground');
-      console.log(campground);
-    }
-  }
-); */
 
 app.get('/', (req, res) => {
   res.render('landing');
@@ -68,12 +54,15 @@ app.get('/campgrounds/new', (req, res) => {
 
 // SHOW - shows information about campground
 app.get('/campgrounds/:id', (req, res) => {
-  Campground.findById(req.params.id, (err, campInfo) => {
-    if (err) {
-      console.log('Something went wrong!!!');
-    } else {
-      res.render('show', { campInfo });
-    }
-  });
+  Campground.findById(req.params.id)
+    .populate('comments')
+    .exec((err, campInfo) => {
+      if (err) {
+        console.log('Something went wrong!!!');
+      } else {
+        console.log(campInfo);
+        res.render('show', { campInfo });
+      }
+    });
 });
 app.listen(3000);

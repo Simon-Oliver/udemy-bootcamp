@@ -3,5 +3,10 @@
     <h1><%= campInfo.name%></h1>
     <img src="<%= campInfo.image%>" alt="">
     <p><%= campInfo.description %></p>
+
+<% campInfo.comments.forEach(e =>{ %>
+<p> <strong><%= e.author %></strong> - <%= e.text %> </p>
+<% })%>
+
 </div>
 <% include partials/footer %>
