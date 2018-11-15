@@ -18,19 +18,24 @@
           <p><%= campInfo.description %></p>
         </div>
       </div>
+      <div class="well">
+        <div class="text-right">
+          <a
+            class="btn btn-success"
+            href="/campgrounds/<%= campInfo._id %>/comments/new"
+            >Add New Comment</a
+          >
+        </div>
+        <% campInfo.comments.forEach(e =>{ %>
+        <div class="row">
+          <div class="col-md-12">
+            <%= e.author %> <span class="pull-right">10 days ago</span>
+            <p><%= e.text %></p>
+          </div>
+        </div>
+        <% })%>
+      </div>
     </div>
   </div>
-
-  <p>
-    <a
-      class="btn btn-success"
-      href="/campgrounds/<%= campInfo._id %>/comments/new"
-      >Add New Comment</a
-    >
-  </p>
-
-  <% campInfo.comments.forEach(e =>{ %>
-  <p><strong><%= e.author %></strong> - <%= e.text %></p>
-  <% })%>
 </div>
 <% include ../partials/footer %>
