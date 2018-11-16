@@ -26,10 +26,12 @@
             >Add New Comment</a
           >
         </div>
+        <hr />
         <% campInfo.comments.forEach(e =>{ %>
         <div class="row">
           <div class="col-md-12">
-            <%= e.author %> <span class="pull-right">10 days ago</span>
+            <strong><%= e.author %></strong>
+            <span class="pull-right">10 days ago</span>
             <p><%= e.text %></p>
           </div>
         </div>
