@@ -12,6 +12,7 @@ mongoose.connect('mongodb://localhost/authDemo');
 
 const app = express();
 app.set('view engine', 'hbs');
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   require('express-session')({
     secret: 'This is a test',
@@ -26,12 +27,37 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//= =============
+// ROUTES
+//= =============
 app.get('/', (req, res) => {
   res.render('home');
 });
 
 app.get('/secret', (req, res) => {
   res.render('secret');
+});
+
+// AUTH ROUTES
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+app.post('/register', (req, res) => {
+  User.register(
+    new User({ username: req.body.username }),
+    req.body.password,
+    (err, user) => {
+      if (err) {
+        console.log(err);
+        res.render('register');
+      } else {
+        passport.authenticate('local')(req, res, () => {
+          res.redirect('/secret');
+        });
+      }
+    }
+  );
 });
 
 app.listen(3000);
