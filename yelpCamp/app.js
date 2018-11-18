@@ -15,7 +15,7 @@ const commentRoutes = require('./routes/comments');
 const campgroundsRoutes = require('./routes/campgrounds');
 const authRoutes = require('./routes/auth');
 
-seedDB();
+// seedDB(); // seed the database
 const app = express();
 
 mongoose.connect(
