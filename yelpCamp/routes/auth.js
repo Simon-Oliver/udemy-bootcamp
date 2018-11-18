@@ -27,7 +27,7 @@ router.post('/register', (req, res) => {
       res.redirect('/campgrounds');
     });
   });
-  res.send('Signing you up');
+  res.redirect('/login');
 });
 
 // show login form

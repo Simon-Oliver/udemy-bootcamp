@@ -16,6 +16,8 @@
           <h4 class="pull-right">9.00 AUD/night</h4>
           <h4><a href=""><%= campInfo.name%></a></h4>
           <p><%= campInfo.description %></p>
+          <p> <em>Submitted by <%= campInfo.author.username %></em> </p>
+          <a class="btn btn-warning" href="/campgrounds/<%= campInfo._id %>/edit">Edit</a>
         </div>
       </div>
       <div class="well">

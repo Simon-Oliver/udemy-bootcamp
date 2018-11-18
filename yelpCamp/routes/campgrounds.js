@@ -19,7 +19,12 @@ router.post('/', (req, res) => {
   const name = req.body.name;
   const image = req.body.image;
   const description = req.body.description;
-  const newCamp = { name, image, description };
+  const author = {
+    id: req.user._id,
+    username: req.user.username
+  };
+  const newCamp = { name, image, description, author };
+
   Campground.create(newCamp, (err, newCamp) => {
     if (err) {
       console.log('Something went wrong!!!');
@@ -29,7 +34,7 @@ router.post('/', (req, res) => {
 });
 
 // NEW - show form to create new campground
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('campground/new');
 });
 
@@ -45,5 +50,37 @@ router.get('/:id', (req, res) => {
       }
     });
 });
+
+// EDIT CAMPGROUND ROUTE
+router.get('/:id/edit', (req, res) => {
+  Campground.findById(req.params.id, (err, foundCampground) => {
+    if (err) {
+      console.log(err);
+      res.redirect('/campgrounds');
+    }
+    res.render('campground/edit', { foundCampground });
+  });
+});
+// UPDATE CAMPGROUND ROUTE
+router.put('/:id', (req, res) => {
+  Campground.findByIdAndUpdate(
+    req.params.id,
+    req.body.campground,
+    (err, updatedCampground) => {
+      if (err) {
+        res.redirect('/campground');
+      }
+      res.redirect(`/campgrounds/${req.params.id}`);
+    }
+  );
+});
+
+// Middleware
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 module.exports = router;
