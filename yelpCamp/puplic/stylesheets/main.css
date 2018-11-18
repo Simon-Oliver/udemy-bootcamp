@@ -15,3 +15,9 @@
     width: 120px;
     justify-content: space-between;
 }
+
+.btnContainerComment {
+    display: flex;
+    width: 90px;
+    justify-content: space-between;
+}

@@ -17,15 +17,17 @@
           <h4><a href=""><%= campInfo.name%></a></h4>
           <p><%= campInfo.description %></p>
           <p> <em>Submitted by <%= campInfo.author.username %></em> </p>
-          <div class="btnContainer">
+          
           <% if(currentUser && campInfo.author.id.equals(currentUser._id)) { %>
+          <div class="btnContainer">
           <a class="btn btn-warning" href="/campgrounds/<%= campInfo._id %>/edit">Edit</a>
           <form action="/campgrounds/<%= campInfo._id%>?_method=DELETE" method="POST">
           <button class="btn btn-danger">Delete</button>
           </form>
+          </div>
           <% } %>
           
-          </div>
+          
           </div>
       </div>
       <div class="well">
@@ -43,7 +45,16 @@
             <strong><%= e.author.username %></strong>
             <span class="pull-right">10 days ago</span>
             <p><%= e.text %></p>
-            <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campInfo._id %>/comments/<%= e._id%>/edit">Edit</a>
+            
+            <% if(currentUser && e.author.id.equals(currentUser._id)) { %>
+            <div class="btnContainerComment">
+              <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campInfo._id %>/comments/<%= e._id%>/edit">Edit</a>
+              <form action="/campgrounds/<%= campInfo._id%>/comments/<%= e._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-xs btn-danger">Delete</button>
+            </form>
+            </div>
+            <% } %>
+            
           </div>
           
         </div>
