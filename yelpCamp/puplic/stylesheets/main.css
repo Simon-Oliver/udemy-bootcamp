@@ -9,3 +9,9 @@
 .caption-full {
     padding: 9px;
 }
+
+.btnContainer {
+    display: flex;
+    width: 120px;
+    justify-content: space-between;
+}
