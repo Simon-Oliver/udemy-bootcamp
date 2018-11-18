@@ -43,7 +43,9 @@
             <strong><%= e.author.username %></strong>
             <span class="pull-right">10 days ago</span>
             <p><%= e.text %></p>
+            <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campInfo._id %>/comments/<%= e._id%>/edit">Edit</a>
           </div>
+          
         </div>
         <% })%>
       </div>
